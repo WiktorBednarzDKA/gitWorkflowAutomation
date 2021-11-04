@@ -1,4 +1,10 @@
 module.exports = {
+  coverageReporters: [
+    "json",
+    "text",
+    "html",
+    "lcov"
+  ],
   collectCoverageFrom: [
     '**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
@@ -6,6 +12,14 @@ module.exports = {
     '!*.{js,jsx,ts,tsx}',
     '!**/node_modules/**',
   ],
+  coverageThreshold: {
+    "global": {
+      "branches": 80,
+      "functions": 80,
+      "lines": 80,
+      "statements": 80
+    }
+  },
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)
     // https://jestjs.io/docs/webpack#mocking-css-modules
