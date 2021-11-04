@@ -1,25 +1,19 @@
-import { checkIfNumber, addition } from '../../utils/common';
+import { validateOrThrow, add } from '../../utils/common';
 
-describe('checkIfNumber', () => {
-  const badInputs = [null, false, true, undefined, '', 'a', [], {}];
-  const allInputs = [...badInputs, 1];
-
-  it('returns a boolean for any given input', () => {
-    allInputs.forEach(input => expect(typeof checkIfNumber(input)).toEqual('boolean'));
-  })
-  it('returns true if given input is a number', () => {
-    expect(checkIfNumber(1)).toBeTruthy();
-  });
-  it('returns false in given input is not a number', () => {
-    badInputs.forEach(input => expect(checkIfNumber(input)).toBeFalsy());
-  })
-  it('returns false if given no input', () => {
-    expect(checkIfNumber()).toBeFalsy();
+describe('validateOrThrow', () => {
+  it('returns void', () => {
+    const mockError = new Error('error');
+    expect(validateOrThrow('a', 'string', mockError)).toEqual(undefined);
+    expect(validateOrThrow(1, 'number', mockError)).toEqual(undefined);
+    expect(validateOrThrow([], 'object', mockError)).toEqual(undefined);
   })
 });
 
 describe('addition', () => {
-  it('throws an error if given no input', () => {
-    expect(() => addition()).toThrow();
+  it('throws if one of the inputs is NaN', () => {
+    expect(() => add(1, 2, null, 3)).toThrow();
+  });
+  it('returns a sum of all provided numbers', () => {
+    expect(add(1, 1)).toEqual(2);
   });
 })
