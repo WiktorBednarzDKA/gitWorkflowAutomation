@@ -9,5 +9,4 @@ export const add = (...numbers) => {
   return numbers.reduce((acc, number) => acc += number, 0);
 };
 
-
 // export const toValueOrNull = value => typeof value !== 'undefined' ? value : null;
